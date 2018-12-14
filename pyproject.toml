@@ -1,0 +1,21 @@
+[build-system]
+requires = ["flit"]
+build-backend = "flit.buildapi"
+
+[tool.flit.metadata]
+dist-name = "pytest-raisin"
+module = "pytest_raisin"
+author = "Wim Glenn"
+author-email = "hey@wimglenn.com"
+home-page = "https://github.com/wimglenn/pytest-raisin"
+requires = ["pytest", "future"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Pytest",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 3",
+]
+
+[tool.flit.entrypoints.pytest11]
+pytest-raisin = "pytest_raisin"
