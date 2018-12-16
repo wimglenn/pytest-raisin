@@ -8,7 +8,7 @@ module = "pytest_raisin"
 author = "Wim Glenn"
 author-email = "hey@wimglenn.com"
 home-page = "https://github.com/wimglenn/pytest-raisin"
-requires = ["pytest", "future"]
+requires = ["pytest"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Framework :: Pytest",
