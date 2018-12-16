@@ -34,7 +34,7 @@ def register_exception_compare(exception_class):
     return None if the exceptions should be considered equivalent.
     """
 
-    if not issubclass(exception_class, BaseException):
+    if not isinstance(exception_class, type) or not issubclass(exception_class, BaseException):
         msg = "Can not register {!r}, it's not an Exception subclass"
         msg = msg.format(exception_class)
         raise TypeError(msg)
@@ -44,9 +44,8 @@ def register_exception_compare(exception_class):
             raise TypeError('You are decorating a non callable: {!r}'.format(func))
         if exception_class in exception_comparers:
             log.warning("%r was registered multiple times", exception_class)
-        else:
-            log.debug("Registered %r to handle %r comparisons", func, exception_class)
         exception_comparers[exception_class] = func
+        log.debug("Registered %r to handle %r comparisons", func, exception_class)
         return func
 
     return decorator
