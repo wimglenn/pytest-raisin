@@ -90,4 +90,4 @@ def pytest_configure(config):
 
 def pytest_unconfigure(config):
     pytest.raises = original
-    vars(pytest).pop("register_exception_comparer", None)
+    vars(pytest).pop("register_exception_compare", None)
