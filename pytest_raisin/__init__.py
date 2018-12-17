@@ -56,6 +56,10 @@ def raises(expected_exception, *args, **kwargs):
     if isinstance(expected_exception, BaseException) and not args and "message" not in kwargs:
         message = "DID NOT RAISE {!r}".format(expected_exception)
         return RaisesContext(expected_exception, message, kwargs.get("match"))
+    # There are some strange non-context usages of raises, e.g. passing a callable along
+    # with args/kwargs or passing a code string to be exec. I don't want to support those
+    # weird use-cases, so just fall-back to original implementation if we received any
+    # positional values i.e. a non-empty *args
     return original(expected_exception, *args, **kwargs)
 
 
