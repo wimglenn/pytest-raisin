@@ -1,10 +1,13 @@
-|pypi|_ |pyversions|_
+|pypi|_ |pyversions|_ |travis|_
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pytest-raisin.svg
 .. _pypi: https://pypi.org/project/pytest-raisin
 
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/pytest-raisin.svg
 .. _pyversions:
+
+.. |travis| image:: https://img.shields.io/travis/jumptrading/luddite.svg?branch=master
+.. _travis: https://travis-ci.org/jumptrading/luddite
 
 
 .. image:: https://user-images.githubusercontent.com/6615374/50065259-46af2780-017b-11e9-8af3-38f340f11df1.png
