@@ -7,7 +7,7 @@
 .. _pyversions:
 
 .. |travis| image:: https://img.shields.io/travis/wimglenn/pytest-raisin.svg?branch=master
-.. _travis: https://travis-ci.org/wimglenn/pytest-raisin
+.. _travis: https://travis-ci.com/wimglenn/pytest-raisin
 
 
 .. image:: https://user-images.githubusercontent.com/6615374/50065259-46af2780-017b-11e9-8af3-38f340f11df1.png
