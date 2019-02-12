@@ -7,7 +7,7 @@ import pytest
 from pytest_raisin.compat import default_compare
 
 
-__version__ = "0.1"
+__version__ = "0.2"
 
 
 log = logging.getLogger(__name__)
@@ -33,19 +33,24 @@ def register_exception_compare(exception_class):
     useful context message should they fail to match. It should
     return None if the exceptions should be considered equivalent.
     """
+    exception_classes = exception_class
+    if not isinstance(exception_class, tuple):
+        exception_classes = (exception_class,)
 
-    if not isinstance(exception_class, type) or not issubclass(exception_class, BaseException):
-        msg = "Can not register {!r}, it's not an Exception subclass"
-        msg = msg.format(exception_class)
-        raise TypeError(msg)
+    for exception_class in exception_classes:
+        if not isinstance(exception_class, type) or not issubclass(exception_class, BaseException):
+            msg = "Can not register {!r}, it's not an Exception subclass"
+            msg = msg.format(exception_class)
+            raise TypeError(msg)
 
     def decorator(func):
         if not callable(func):
             raise TypeError('You are decorating a non callable: {!r}'.format(func))
-        if exception_class in exception_comparers:
-            log.warning("%r was registered multiple times", exception_class)
-        exception_comparers[exception_class] = func
-        log.debug("Registered %r to handle %r comparisons", func, exception_class)
+        for exception_class in exception_classes:
+            if exception_class in exception_comparers:
+                log.warning("%r was registered multiple times", exception_class)
+            exception_comparers[exception_class] = func
+            log.debug("Registered %r to handle %r comparisons", func, exception_class)
         return func
 
     return decorator
@@ -91,3 +96,6 @@ def pytest_configure(config):
 def pytest_unconfigure(config):
     pytest.raises = original
     vars(pytest).pop("register_exception_compare", None)
+
+
+pytest.register_exception_compare = register_exception_compare
