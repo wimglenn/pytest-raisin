@@ -25,7 +25,7 @@ install:
   - flit install
 
 script:
-  - PYTHONPATH=. pytest
+  - pytest
 
 notifications:
   email: false

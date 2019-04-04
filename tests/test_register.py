@@ -1,6 +1,3 @@
-pytest_plugins = ["pytester", "pytest_raisin"]
-
-
 def test_user_registered_error_hook_pass(testdir):
     testdir.makepyfile("""
         import pytest
