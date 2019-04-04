@@ -1,4 +1,4 @@
-pytest_plugins = ["pytester", "pytest-raisin"]
+pytest_plugins = ["pytester", "pytest_raisin"]
 
 
 def test_spurious_chaining_is_suppressed(testdir):

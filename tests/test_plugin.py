@@ -1,4 +1,4 @@
-pytest_plugins = ["pytester"]
+pytest_plugins = ["pytester", "pytest_raisin"]
 
 
 def test_using_exception_class(testdir):
