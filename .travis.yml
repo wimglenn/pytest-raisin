@@ -16,16 +16,8 @@ matrix:
   allow_failures:
   - python: "nightly"
 
-before_install:
-  - sudo apt-get -y install python3-pip python3-setuptools
-  - sudo pip3 install flit
-
-install:
-  - pip install --upgrade pytest flit6
-  - flit install
-
 script:
-  - pytest
+  - python -m pytest
 
 notifications:
   email: false
