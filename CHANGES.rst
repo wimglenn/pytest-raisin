@@ -1,3 +1,9 @@
+pytest-raisin 0.3 (2019-04-03)
+==============================
+
+- Improved cross-compat code, simplifying into a single .py module distribution.
+
+
 pytest-raisin 0.2 (2019-02-11)
 ==============================
 

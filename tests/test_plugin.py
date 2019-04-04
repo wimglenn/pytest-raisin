@@ -1,6 +1,3 @@
-pytest_plugins = ["pytester"]
-
-
 def test_using_exception_class(testdir):
     testdir.makepyfile("""
         import pytest

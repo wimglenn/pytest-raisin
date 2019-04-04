@@ -4,10 +4,8 @@ import sys
 
 import pytest
 
-from pytest_raisin.compat import default_compare
 
-
-__version__ = "0.2"
+__version__ = "0.3"
 
 
 log = logging.getLogger(__name__)
@@ -66,6 +64,22 @@ def raises(expected_exception, *args, **kwargs):
     # weird use-cases, so just fall-back to original implementation if we received any
     # positional values i.e. a non-empty *args
     return original(expected_exception, *args, **kwargs)
+
+
+def default_compare(exc_actual, exc_expected):
+    __tracebackhide__ = True
+    actual_args = getattr(exc_actual, "args", None)
+    expected_args = getattr(exc_expected, "args", None)
+    if actual_args == expected_args:
+        return
+    msg = "{} args do not match!\n    Actual:   {}\n    Expected: {}"
+    msg = msg.format(type(exc_expected).__name__, actual_args, expected_args)
+    err = AssertionError(msg)
+    err.__cause__ = None
+    # as a side-effect, this also sets __suppress_context__
+    # that's a cross-compatible way of disabling chaining i.e. squashing the message
+    # "During handling of the above exception, another exception occurred"
+    raise err
 
 
 class RaisesContext(type(pytest.raises(Exception))):
