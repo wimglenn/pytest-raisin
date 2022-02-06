@@ -82,6 +82,12 @@ def default_compare(exc_actual, exc_expected):
     raise err
 
 
+try:
+    ExceptionInfo = pytest.ExceptionInfo
+except AttributeError:
+    ExceptionInfo = type(pytest.raises(Exception).__enter__())
+
+
 class RaisesContext(object):
     def __init__(self, expected_exception, message, match_expr=None):
         self.expected_exception = expected_exception
@@ -90,10 +96,6 @@ class RaisesContext(object):
         self.excinfo = None
 
     def __enter__(self):
-        if int(pytest.__version__.split(".")[0]) < 7:
-            ExceptionInfo = type(pytest.raises(Exception).__enter__())
-        else:
-            ExceptionInfo = pytest.ExceptionInfo
         self.excinfo = ExceptionInfo.for_later()
         return self.excinfo
 
@@ -101,11 +103,11 @@ class RaisesContext(object):
         __tracebackhide__ = True
         if exc_type is None:
             pytest.fail(self.message)
-        if sys.version_info < (3,):
-            # very old pytest version e.g. Python 2.x
-            self.excinfo.__init__((exc_type, exc_val, exc_tb))
-        else:
+        try:
             self.excinfo.fill_unfilled((exc_type, exc_val, exc_tb))
+        except AttributeError:
+            # old pytest version e.g. on Python 2.x
+            self.excinfo.__init__((exc_type, exc_val, exc_tb))
         # note: subclasses are not allowed here!
         suppress_exception = exc_type is type(self.expected_exception)
         if sys.version_info < (3,) and suppress_exception:
