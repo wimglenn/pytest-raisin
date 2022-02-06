@@ -97,7 +97,7 @@ def test_using_exception_instance_and_regex_doesnt_match(testdir):
     """)
     result = testdir.runpytest()
     result.assert_outcomes(failed=1)
-    if sys.version_info.major == 2:
+    if sys.version_info < (3,):
         txt = "E * AssertionError: Pattern '2101' not found in 'somebody set up us the bomb'"
     else:
         txt = "E * AssertionError: Regex pattern '2101' does not match 'somebody set up us the bomb'."
