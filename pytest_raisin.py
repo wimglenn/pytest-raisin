@@ -5,7 +5,7 @@ import sys
 import pytest
 
 
-__version__ = "0.3"
+__version__ = "0.4"
 
 
 log = logging.getLogger(__name__)
@@ -82,20 +82,37 @@ def default_compare(exc_actual, exc_expected):
     raise err
 
 
-class RaisesContext(type(pytest.raises(Exception))):
+class RaisesContext(object):
+    def __init__(self, expected_exception, message, match_expr=None):
+        self.expected_exception = expected_exception
+        self.message = message
+        self.match_expr = match_expr
+        self.excinfo = None
 
-    def __exit__(self, *tp):
+    def __enter__(self):
+        if int(pytest.__version__.split(".")[0]) < 7:
+            ExceptionInfo = type(pytest.raises(Exception).__enter__())
+        else:
+            ExceptionInfo = pytest.ExceptionInfo
+        self.excinfo = ExceptionInfo.for_later()
+        return self.excinfo
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
         __tracebackhide__ = True
-        if tp[0] is None:
+        if exc_type is None:
             pytest.fail(self.message)
-        self.excinfo.__init__(tp)
+        if sys.version_info < (3,):
+            # very old pytest version e.g. Python 2.x
+            self.excinfo.__init__((exc_type, exc_val, exc_tb))
+        else:
+            self.excinfo.fill_unfilled((exc_type, exc_val, exc_tb))
         # note: subclasses are not allowed here!
-        suppress_exception = self.excinfo.type is type(self.expected_exception)
+        suppress_exception = exc_type is type(self.expected_exception)
         if sys.version_info < (3,) and suppress_exception:
             sys.exc_clear()
         if suppress_exception:
             compare = exception_comparers.get(type(self.expected_exception), default_compare)
-            compare(self.excinfo.value, self.expected_exception)
+            compare(exc_val, self.expected_exception)
         if self.match_expr is not None and suppress_exception:
             self.excinfo.match(self.match_expr)
         return suppress_exception
