@@ -1,4 +1,4 @@
-|pypi|_ |pyversions|_ |travis|_
+|pypi|_ |pyversions|_ |actions|_
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pytest-raisin.svg
 .. _pypi: https://pypi.org/project/pytest-raisin
@@ -6,8 +6,8 @@
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/pytest-raisin.svg
 .. _pyversions:
 
-.. |travis| image:: https://img.shields.io/travis/wimglenn/pytest-raisin.svg?branch=master
-.. _travis: https://travis-ci.com/wimglenn/pytest-raisin
+.. |actions| image:: https://github.com/wimglenn/pytest-raisin/actions/workflows/tests.yml/badge.svg
+.. _actions: https://github.com/wimglenn/pytest-raisin/actions/workflows/tests.yml/
 
 
 .. image:: https://user-images.githubusercontent.com/6615374/50065259-46af2780-017b-11e9-8af3-38f340f11df1.png

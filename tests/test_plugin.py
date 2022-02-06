@@ -95,5 +95,5 @@ def test_using_exception_instance_and_regex_doesnt_match(testdir):
     result = testdir.runpytest()
     result.assert_outcomes(failed=1)
     result.stdout.fnmatch_lines([
-        "E * AssertionError: Pattern '2101' not found in 'somebody set up us the bomb'"
+        "E * AssertionError: Regex pattern '2101' does not match 'somebody set up us the bomb'."
     ])
