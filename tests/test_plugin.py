@@ -100,5 +100,5 @@ def test_using_exception_instance_and_regex_doesnt_match(testdir):
     if sys.version_info < (3,):
         txt = "E * AssertionError: Pattern '2101' not found in 'somebody set up us the bomb'"
     else:
-        txt = "E * AssertionError: Regex pattern '2101' does not match 'somebody set up us the bomb'."
+        txt = "E * AssertionError: Regex pattern did not match."
     result.stdout.fnmatch_lines([txt])
