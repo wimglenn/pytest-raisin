@@ -19,7 +19,7 @@ pytest-raisin
 Plugin putting a higher-level interface to `pytest.raises <https://docs.pytest.org/en/latest/assert.html#assertions-about-expected-exceptions>`_.
 It allows to use an exception *instance* as the expected value, which would be compared with the actual exception (if any) based upon the type and the ``args`` attribute.
 
-.. code-block:: bash
+.. code-block:: python
 
    # Old-skool:
    with pytest.raises(SystemExit) as cm:
