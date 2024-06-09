@@ -1,4 +1,4 @@
-|pypi|_ |pyversions|_ |actions|_
+|pypi| |pyversions| |actions|
 
 .. |pypi| image:: https://img.shields.io/pypi/v/pytest-raisin.svg
 .. _pypi: https://pypi.org/project/pytest-raisin
