@@ -1,7 +1,8 @@
+![image](https://user-images.githubusercontent.com/6615374/50065259-46af2780-017b-11e9-8af3-38f340f11df1.png)
+
 [![pypi](https://img.shields.io/pypi/v/pytest-raisin.svg)](https://pypi.org/project/pytest-raisin/)
 ![pyversions](https://img.shields.io/pypi/pyversions/pytest-raisin.svg)
 [![actions](https://github.com/wimglenn/pytest-raisin/actions/workflows/tests.yml/badge.svg)](https://github.com/wimglenn/pytest-raisin/actions/workflows/tests.yml/)
-![image](https://user-images.githubusercontent.com/6615374/50065259-46af2780-017b-11e9-8af3-38f340f11df1.png)
 
 # pytest-raisin
 
