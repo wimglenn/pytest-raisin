@@ -5,7 +5,7 @@ build-backend = "flit_core.buildapi"
 [tool.flit.metadata]
 dist-name = "pytest-raisin"
 module = "pytest_raisin"
-description-file = "README.rst"
+description-file = "README.md"
 author = "Wim Glenn"
 author-email = "hey@wimglenn.com"
 home-page = "https://github.com/wimglenn/pytest-raisin"
