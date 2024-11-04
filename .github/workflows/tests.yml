@@ -2,14 +2,14 @@ name: tests
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
-    branches: ["main"]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
   tests:
-    name: "Python ${{ matrix.python-version }} on ${{ matrix.os }}"
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -24,30 +24,32 @@ jobs:
         - "3.10"
         - "3.11"
         - "3.12"
+        - "3.13"
 
     steps:
-      - uses: "actions/checkout@v3"
+      - uses: actions/checkout@v4
 
-      - uses: "actions/setup-python@v4"
+      - uses: actions/setup-python@v5
         with:
-          python-version: "${{ matrix.python-version }}"
+          python-version: ${{ matrix.python-version }}
 
-      - name: "Install pytest"
+      - name: Install pytest
         run: pip install pytest
 
-      - name: "Run tests for ${{ matrix.python-version }} on ${{ matrix.os }}"
+      - name: Run tests for ${{ matrix.python-version }} on ${{ matrix.os }}
         run: python -m pytest
 
   tests-27:
-    name: "Python 2.7 on ubuntu-20.04"
+    name: Python 2.7 on ubuntu-20.04
     runs-on: ubuntu-20.04
     container:
       image: python:2.7-buster
 
     steps:
-      - uses: "actions/checkout@v3"
-      - name: "Install pytest"
+      - uses: actions/checkout@v4
+
+      - name: Install pytest
         run: pip install pytest
 
-      - name: "Run tests for Python 2.7 on ubuntu-20.04"
+      - name: Run tests for Python 2.7 on ubuntu-20.04
         run: python -m pytest
