@@ -67,7 +67,7 @@ falling back to the original implementation.
 ## Advanced Usage
 
 In most use-cases, the default behaviour of considering exceptions to be
-equivalent if the [args]{.title-ref} attributes have matching tuples
+equivalent if the [args](https://docs.python.org/3/library/exceptions.html#BaseException.args) attributes have matching tuples
 should be satisfactory. However, some 3rd-party exception classes have
 additional logic inside them (e.g. Django\'s `ValidationError`) and you
 might want to provide a more custom assertion here.
